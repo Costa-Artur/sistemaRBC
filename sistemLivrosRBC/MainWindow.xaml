@@ -1,0 +1,77 @@
+﻿<Window x:Class="sistemLivrosRBC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sistema RBC de recomendação de livros" Height="500" Width="600">
+    <Grid>
+        <StackPanel Margin="10">
+            <!-- Pesos -->
+            <TextBlock Text="Peso do ano de lançamento:" />
+            <TextBox Name="pAnoLancamentoTextBox" Margin="5" />
+
+            <TextBlock Text="Peso do número de páginas:" />
+            <TextBox Name="pNumPagTextBox" Margin="5" />
+
+            <TextBlock Text="Peso da popularidade:" />
+            <TextBox Name="pPopTextBox" Margin="5" />
+
+            <TextBlock Text="Peso do público alvo:" />
+            <TextBox Name="pPubAlvoTextBox" Margin="5" />
+
+            <TextBlock Text="Peso da narração:" />
+            <TextBox Name="pNarracaoTextBox" Margin="5" />
+
+            <!-- Parâmetros do Livro -->
+            <TextBlock Text="Gênero:" />
+            <TextBox Name="generoTextBox" Margin="5" />
+
+            <TextBlock Text="Tema:" />
+            <TextBox Name="temaTextBox" Margin="5" />
+
+            <TextBlock Text="Número de Páginas:" />
+            <TextBox Name="numPagTextBox" Margin="5" />
+
+            <TextBlock Text="Ano de Lançamento:" />
+            <TextBox Name="anoLancamentoTextBox" Margin="5" />
+
+            <TextBlock Text="Gênero do Protagonista:" />
+            <ComboBox Name="generoProtComboBox" Margin="5">
+                <ComboBoxItem Content="Masculino"/>
+                <ComboBoxItem Content="Feminino"/>
+                <ComboBoxItem Content="Outro"/>
+            </ComboBox>
+
+            <TextBlock Text="Idioma Original:" />
+            <TextBox Name="idiomaTextBox" Margin="5" />
+
+            <TextBlock Text="Complexidade da Linguagem:" />
+            <ComboBox Name="complexidadeComboBox" Margin="5">
+                <ComboBoxItem Content="Baixa"/>
+                <ComboBoxItem Content="Média"/>
+                <ComboBoxItem Content="Alta"/>
+            </ComboBox>
+
+            <TextBlock Text="Popularidade:" />
+            <TextBox Name="popTextBox" Margin="5" />
+
+            <TextBlock Text="Público Alvo:" />
+            <ComboBox Name="publicoComboBox" Margin="5">
+                <ComboBoxItem Content="Adulto"/>
+                <ComboBoxItem Content="Juvenil"/>
+                <ComboBoxItem Content="Infantil"/>
+            </ComboBox>
+
+            <TextBlock Text="Narrador:" />
+            <ComboBox Name="narradorComboBox" Margin="5">
+                <ComboBoxItem Content="Primeira Pessoa"/>
+                <ComboBoxItem Content="Terceira Pessoa"/>
+                <ComboBoxItem Content="Onisciente"/>
+            </ComboBox>
+
+            <!-- Botão de Recomendação -->
+            <Button Content="Recomendar Livros" Name="botaoRecomendar" Margin="10" Click="BtnRecomendar_Click" />
+
+            <!-- Lista de livros recomendados -->
+            <ListBox Name="livrosListBox" Margin="10" Height="200"/>
+        </StackPanel>
+    </Grid>
+</Window>
