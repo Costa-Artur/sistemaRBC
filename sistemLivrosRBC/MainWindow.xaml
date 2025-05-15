@@ -47,6 +47,23 @@
 
             <!-- Botão vai abaixo da entrada -->
             <Button Content="Recomendar" Click="BtnRecomendar_Click" Margin="0,10,0,0" Height="30"/>
+
+            <!-- Expansor com modelagem -->
+            <Expander Header="📘 Ver Detalhes da Modelagem" Margin="0,20,0,0">
+                <ScrollViewer Height="180">
+                    <TextBlock TextWrapping="Wrap">
+                        Atributos e suas comparações:
+
+                        - Gênero, Plataforma, Estilo Visual, Desenvolvedora: comparação binária (igual = 1, diferente = 0)
+                        - Faixa Etária e Multiplayer: comparação binária (igual = 1, diferente = 0)
+                        - Ano de Lançamento: 1 se igual, 0 caso contrário
+                        - Avaliação: 1 se diferença menor que 2, senão 0
+                        - Duração: similar se dentro de ±10%
+
+                        Similaridade global = soma(peso_i × similaridade_local_i) / soma(pesos)
+                    </TextBlock>
+                </ScrollViewer>
+            </Expander>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Margin="5">

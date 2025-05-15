@@ -73,31 +73,21 @@ namespace sistemLivrosRBC
                         {
                             double score = 0;
 
-                            // Ano de lançamento (peso variável)
                             if (pAnoLanc > 0)
                             {
                                 int anoBanco = Convert.ToInt32(reader["AnoLancamento"]);
                                 score += pAnoLanc * (ano == anoBanco ? 1 : 0);
                             }
 
-                            // Duração (peso variável)
                             if (pDuracao > 0)
                             {
                                 int duracaoBanco = Convert.ToInt32(reader["DuracaoHoras"]);
-                                // Considera similar se dentro de +/- 10% (aqui usaremos como base a duração, não ano)
                                 if (ano > 0 && duracaoBanco > 0)
                                 {
-                                    // Atenção: seu código original compara 'ano' com duração, provavelmente um erro.
-                                    // Ajustei para comparar com 'avaliacao' não faz sentido, então vamos ignorar essa parte
-                                    // ou colocar alguma lógica coerente para duração - você pode adaptar.
-                                    // Vou fazer uma pontuação simples: se duraçãoBanco dentro de 10% do ano, ou seja...
-                                    // isso é estranho, então vou considerar que a entrada do usuário não tem duração, ignoramos.
-                                    // Para fins do exemplo, colocarei 0.
                                     score += 0;
                                 }
                             }
 
-                            // Avaliação (peso variável)
                             if (pAvaliacao > 0)
                             {
                                 double avaliacaoBanco = Convert.ToDouble(reader["Avaliacao"]);
@@ -105,21 +95,18 @@ namespace sistemLivrosRBC
                                 score += pAvaliacao * (diff < 2 ? 1 : 0);
                             }
 
-                            // Faixa Etária (peso variável)
                             if (pFaixaEtaria > 0)
                             {
                                 string faixaBanco = reader["FaixaEtaria"].ToString();
                                 score += pFaixaEtaria * (faixaBanco.Equals(faixaEtaria, StringComparison.OrdinalIgnoreCase) ? 1 : 0);
                             }
 
-                            // Multiplayer (peso variável)
                             if (pMultiplayer > 0)
                             {
                                 string multiBanco = reader["Multiplayer"].ToString();
                                 score += pMultiplayer * (multiBanco.Equals(multiplayer, StringComparison.OrdinalIgnoreCase) ? 1 : 0);
                             }
 
-                            // Critérios fixos
                             if (!string.IsNullOrEmpty(genero))
                             {
                                 string generoBanco = reader["Genero"].ToString();
@@ -144,12 +131,8 @@ namespace sistemLivrosRBC
                                 score += (devBanco.Equals(desenvolvedora, StringComparison.OrdinalIgnoreCase) ? p_dev : 0);
                             }
 
-                            // Criar objeto Jogo com dados e similaridade
-                            // Definindo maxScore para normalizar percentual:
-                            // Soma dos pesos fixos + soma dos pesos variáveis (assumindo todos 1)
-                            // Exemplo simples para normalizar:
                             double maxScore = p_gen + p_plat + p_estilo + p_dev + pAnoLanc + pDuracao + pAvaliacao + pFaixaEtaria + pMultiplayer;
-                            if (maxScore == 0) maxScore = 1; // evitar divisão por zero
+                            if (maxScore == 0) maxScore = 1;
 
                             double percent = Math.Min(100, (score / maxScore) * 100);
 
@@ -170,7 +153,6 @@ namespace sistemLivrosRBC
                     }
                 }
 
-                // Ordenar do mais similar para o menos similar
                 var rankedJogos = jogos.OrderByDescending(j => j.SimilaridadePercent).ToList();
 
                 jogosListView.ItemsSource = rankedJogos;
@@ -182,7 +164,6 @@ namespace sistemLivrosRBC
         }
     }
 
-    // Classe modelo para jogos, com similaridade
     public class Jogo
     {
         public string Titulo { get; set; }
